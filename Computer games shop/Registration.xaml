@@ -1,0 +1,99 @@
+﻿<Window x:Class="Computer_games_shop.Registration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Computer_games_shop"
+        mc:Ignorable="d"
+        Title="Регистрация" Height="450" Width="800" ResizeMode="CanMinimize">
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Cambria"/>
+            <Setter Property="Foreground" Value="#ff6e40"/>
+            <Setter Property="Foreground" Value="#1e3d59"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Cambria"/>
+            <Setter Property="Foreground" Value="#ff6e40"/>
+            <Setter Property="Foreground" Value="#1e3d59"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Cambria"/>
+            <Setter Property="Foreground" Value="#1e3d59" />
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="BorderBrush" Value="#1e3d59"/>
+            <Setter Property="Background" Value="#f5f0e1"/>
+        </Style>
+        <Style TargetType="PasswordBox">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Cambria"/>
+            <Setter Property="Foreground" Value="#1e3d59" />
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="BorderBrush" Value="#1e3d59"/>
+            <Setter Property="Background" Value="#f5f0e1"/>
+            <Setter Property="PasswordChar" Value="*"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Cambria"/>
+            <Setter Property="Foreground" Value="#1e3d59" />
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="BorderBrush" Value="#1e3d59"/>
+            <Setter Property="Background" Value="#ff6e40"/>
+        </Style>
+    </Window.Resources>
+    <Grid ShowGridLines="False" Background="#f5f0e1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75*"></RowDefinition>
+            <RowDefinition Height="250*"></RowDefinition>
+            <RowDefinition Height="75*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="151*"></ColumnDefinition>
+            <ColumnDefinition Width="250*"></ColumnDefinition>
+            <ColumnDefinition Width="183*"></ColumnDefinition>
+            <ColumnDefinition Width="216*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0" x:Name="Logo" MouseDown="Logo_MouseDown">
+            <StackPanel.Effect>
+                <DropShadowEffect/>
+            </StackPanel.Effect>
+            <StackPanel.Background>
+                <ImageBrush ImageSource="/logo.jpg" Stretch="Uniform"/>
+            </StackPanel.Background>
+        </StackPanel>
+        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40" Content="Регистрация"/>
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <Label>Логин</Label>
+                <TextBox Width="250" Margin="11,0,0,0" x:Name="loginField"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                <Label>E-mail</Label>
+                <TextBox Width="340" Margin="12,0,0,0" x:Name="emailField"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                <Label>Пароль</Label>
+                <PasswordBox Width="250" x:Name="passwordField"></PasswordBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                <Label>Повторите пароль</Label>
+                <PasswordBox Width="235" x:Name="repeatpasswordField"></PasswordBox>
+            </StackPanel>
+            <Button Content="Зарегистрироваться" Width="190" Margin="0,15,0,0" x:Name="RegistrationButton" Click="RegistrationButton_Click">
+                <Button.Effect>
+                    <DropShadowEffect/>
+                </Button.Effect>
+            </Button>
+        </StackPanel> 
+    </Grid>
+</Window>

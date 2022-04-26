@@ -1,0 +1,76 @@
+﻿<Window x:Class="Computer_games_shop.RedactUsers"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Computer_games_shop"
+        mc:Ignorable="d"
+        Title="RedactUsers" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Cambria"/>
+            <Setter Property="Foreground" Value="#ff6e40"/>
+            <Setter Property="Foreground" Value="#1e3d59"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Cambria"/>
+            <Setter Property="Foreground" Value="#1e3d59" />
+            <Setter Property="BorderBrush" Value="#1e3d59"/>
+            <Setter Property="Background" Value="#ff6e40"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Cambria"/>
+            <Setter Property="Foreground" Value="#1e3d59" />
+            <Setter Property="BorderBrush" Value="#1e3d59"/>
+            <Setter Property="Background" Value="#ff6e40"/>
+        </Style>
+    </Window.Resources>
+    <Grid ShowGridLines="False" Background="#f5f0e1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100*"></RowDefinition>
+            <RowDefinition Height="109*"></RowDefinition>
+            <RowDefinition Height="225*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="151*"></ColumnDefinition>
+            <ColumnDefinition Width="293*"></ColumnDefinition>
+            <ColumnDefinition Width="140*"></ColumnDefinition>
+            <ColumnDefinition Width="216*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0" x:Name="Game_Shop"  MouseDown="Game_Shop_MouseDown">
+            <StackPanel.Effect>
+                <DropShadowEffect/>
+            </StackPanel.Effect>
+            <StackPanel.Background>
+                <ImageBrush ImageSource="/logo.jpg" Stretch="Uniform"/>
+            </StackPanel.Background>
+        </StackPanel>
+        <Label Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Пользователи" FontSize="35" Margin="124,0,0,0" Height="52" Width="249"/>
+        <ListBox BorderBrush="#f5f0e1" x:Name="userslist" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Right" Width="356" Background="#f5f0e1" FontFamily="Cambria" FontSize="25" Foreground="#1e3d59" SelectionChanged="userslist_SelectionChanged" Grid.RowSpan="3" Margin="0,100,0,0"/>
+        <WrapPanel Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Vertical" Grid.Row="1">
+            <Label x:Name="userLoginLabel" Content="Логин: "/>
+            <Label x:Name="userEmailLabel" Content="Email: "/>
+        </WrapPanel>
+        <WrapPanel Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Center" Margin="0,109,0,0" Grid.RowSpan="2" Width="236">
+            <Button x:Name="Change" Content="Сменить роль" FontSize="20" Width="235" Click="Change_Click" IsEnabled="False">
+                <Button.Effect>
+                    <DropShadowEffect/>
+                </Button.Effect>
+            </Button>
+            <ComboBox x:Name="Roles" Margin="0,30,0,0" Width="235" FontSize="20" SelectedValue="User" IsEnabled="False">
+            </ComboBox>
+        </WrapPanel>
+        <Line X1="5" X2="440" Y1="90" Y2="90" StrokeThickness="1" Grid.Column="0" Grid.ColumnSpan="2" Stroke="#1e3d59" Margin="0,100,0,0" Grid.RowSpan="3"/>
+        <Label x:Name="Settings" Grid.Column="3" HorizontalAlignment="Center" Content="Настройки" VerticalAlignment="Center" MouseDown="Settings_MouseDown" Height="40" Width="142"/>
+        <WrapPanel x:Name="SettingBar" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#f5f0e1" Visibility="Hidden" MouseLeave="SettingBar_MouseLeave" Grid.Row="0" Grid.RowSpan="2" Margin="0, -10 ,0,0" Orientation="Vertical">
+            <Button Content="Аккаунт" FontSize="15" Background="#f5f0e1" BorderBrush="#f5f0e1" x:Name="AccountButton" Click="Account_Click"/>
+            <Button Content="Выйти" FontSize="15" Background="#f5f0e1" BorderBrush="#f5f0e1" Click="Button_Click"/>
+        </WrapPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,111 @@
+﻿<Window x:Class="Computer_games_shop.Game"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Computer_games_shop"
+        mc:Ignorable="d"
+        Title="Game" Height="509" Width="847" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Cambria"/>
+            <Setter Property="Foreground" Value="#ff6e40"/>
+            <Setter Property="Foreground" Value="#1e3d59"/>
+            <!--<Setter Property="Foreground" Value="#1e3d59"/>-->
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Cambria"/>
+            <Setter Property="Foreground" Value="#ff6e40"/>
+            <Setter Property="Foreground" Value="#1e3d59"/>
+            <!--<Setter Property="Foreground" Value="#1e3d59"/>-->
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Cambria"/>
+            <Setter Property="Foreground" Value="#1e3d59" />
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="BorderBrush" Value="#1e3d59"/>
+            <Setter Property="Background" Value="#f5f0e1"/>
+        </Style>
+        <Style TargetType="PasswordBox">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Cambria"/>
+            <Setter Property="Foreground" Value="#1e3d59" />
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="BorderBrush" Value="#1e3d59"/>
+            <Setter Property="Background" Value="#f5f0e1"/>
+            <Setter Property="PasswordChar" Value="*"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Cambria"/>
+            <Setter Property="Foreground" Value="#1e3d59" />
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="BorderBrush" Value="#1e3d59"/>
+            <Setter Property="Background" Value="#ff6e40"/>
+        </Style>
+    </Window.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Hidden">
+        <Grid ShowGridLines="False" Background="#f5f0e1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1.5*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="85"/>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0" x:Name="Game_Shop" MouseDown="Game_Shop_MouseDown">
+                <StackPanel.Effect>
+                    <DropShadowEffect/>
+                </StackPanel.Effect>
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="/logo.jpg" Stretch="Uniform"/>
+                </StackPanel.Background>
+            </StackPanel>
+            <Image x:Name="GamePrview" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Width="485" Height="275"/>
+            <TextBlock x:Name="nameLabel" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="25" Text="Название" Height="40"/>
+            <StackPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <Label x:Name="platoformLabel" Content="Платформа: "/>
+                <Label x:Name="clientLabel" Content="Активация: "/>
+                <Label x:Name="GenreLabel" Content="Жанр: "/>
+                <Label x:Name="DeveloperLabel" Content="Издатель: "/>
+                <Label x:Name="DateLabel" Content="Дата выхода: "/>
+                <Label x:Name="QuantityLabel" Content="Наличие: "/>
+            </StackPanel>
+            <WrapPanel Height="40" Grid.Row="1" Orientation="Horizontal" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                <Label x:Name="PriceLabel" VerticalAlignment="Center" FontSize="25" Margin="0,0,50,0"/>
+                <Button x:Name="BuyButtom" FontSize="25" Content="Купить" Click="BuyButtom_Click"/>
+            </WrapPanel>
+            <Line x:Name="FavouritesLine" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" X1="0" X2="500" Y1="10" Y2="10" Stroke="#1e3d59" StrokeThickness="1"/>
+            <StackPanel x:Name="FavouritesPanel" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal" Margin="0,20,10,0" Visibility="Visible" MouseDown="FavouritesPanel_MouseDown">
+                <Label Content="Добавить в избранное" Foreground="#1e3d59" VerticalAlignment="Center" x:Name="FavouritesText"/>
+                <Image Source="C:\Users\79172\Desktop\Магазин компьютерных игр\favourite.png" Height="60" Width="60" VerticalAlignment="Top"/>
+            </StackPanel>
+            <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                <WrapPanel>
+                    <Label x:Name="Descriprion" Content="Описание" Margin="10,0,20,0" MouseDown="Descriprion_MouseDown"/>
+                    <Label x:Name="S_R"  Content="Системные требования" Margin="0,0,20,0" MouseDown="Descriprion_MouseDown"/>
+                    <Label x:Name="Activation" Content="Активация" MouseDown="Descriprion_MouseDown"/>
+                </WrapPanel>
+                <Line X1="15" X2="501.5" Y1="0" Y2="0" StrokeThickness="0.95" Stroke="#1e3d59"/>
+                <WrapPanel Margin="0,-0.45,0,0">
+                    <Line x:Name="DescriptionLine" X1="15" X2="110" Y1="0" Y2="0" StrokeThickness="1" Stroke="#FFFFC13B" Visibility="Hidden"/>
+                    <Line x:Name="S_RLine" X1="30" X2="255" Y1="0" Y2="0" StrokeThickness="1" Stroke="#FFFFC13B" Visibility="Hidden"/>
+                    <Line x:Name="ActivationLine" X1="29.5" X2="136.5" Y1="0" Y2="0" StrokeThickness="1" Stroke="#FFFFC13B" Visibility="Hidden"/>
+                </WrapPanel>
+                <TextBlock Padding="0,10,0,10" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="15,0,15,0" TextWrapping="Wrap" x:Name="BottomTextBlock" HorizontalAlignment="Left"/>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</Window>

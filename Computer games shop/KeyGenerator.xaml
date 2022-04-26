@@ -1,0 +1,86 @@
+﻿<Window x:Class="Computer_games_shop.KeyGenerator"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Computer_games_shop"
+        mc:Ignorable="d"
+        Title="KeyGenerator" Height="300" Width="510" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Cambria"/>
+            <Setter Property="Foreground" Value="#ff6e40"/>
+            <Setter Property="Foreground" Value="#1e3d59"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Cambria"/>
+            <Setter Property="Foreground" Value="#ff6e40"/>
+            <Setter Property="Background" Value="#f5f0e1"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Cambria"/>
+            <Setter Property="Foreground" Value="#1e3d59" />
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="BorderBrush" Value="#1e3d59"/>
+            <Setter Property="Background" Value="#ff6e40"/>
+        </Style>
+    </Window.Resources>
+    <Grid ShowGridLines="False" Background="#f5f0e1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70*"></RowDefinition>
+            <RowDefinition Height="200*"></RowDefinition>
+            <RowDefinition Height="50*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="151*"></ColumnDefinition>
+            <ColumnDefinition Width="237*"></ColumnDefinition>
+            <ColumnDefinition Width="196*"></ColumnDefinition>
+            <ColumnDefinition Width="216*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0" MouseDown="StackPanel_MouseDown">
+            <StackPanel.Effect>
+                <DropShadowEffect/>
+            </StackPanel.Effect>
+            <StackPanel.Background>
+                <ImageBrush ImageSource="/logo.jpg" Stretch="Uniform"/>
+            </StackPanel.Background>
+        </StackPanel>
+        <Label FontSize="20" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Content="Генератор ключей" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+        <Label FontSize="20" x:Name="Settings" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Center" Content="Настройки" VerticalAlignment="Center" MouseDown="Settings_MouseDown"/>
+        <WrapPanel x:Name="SettingBar" Grid.Row="1" Grid.Column="3" VerticalAlignment="Top" HorizontalAlignment="Center" Background="#f5f0e1" Visibility="Hidden" MouseLeave="SettingBar_MouseLeave" Margin="0,-15,0,0">
+            <Button Content="Аккаунт" FontSize="15" Background="#f5f0e1" BorderBrush="#f5f0e1" x:Name="Account" Click="Account_Click"/>
+            <Button Content="Выйти" FontSize="15" Background="#f5f0e1" BorderBrush="#f5f0e1" x:Name="Exit" Click="Exit_Click"/>
+        </WrapPanel>
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <WrapPanel Orientation="Horizontal">
+                <Label Content="Игра:" FontSize="18"/>
+                <Label Foreground="#ff6e40" x:Name="gameNameLabel"/>
+            </WrapPanel>
+            <WrapPanel Orientation="Horizontal" Margin="0,0,0,0">
+                <Label Content="Разработчик: " FontSize="18"/>
+                <Label Foreground="#ff6e40" x:Name="gameDeveloperLabel"/>
+            </WrapPanel>
+            <WrapPanel Orientation="Horizontal">
+                <Label Content="Кол-во ключей: " FontSize="18"/>
+                <Label Foreground="#ff6e40" x:Name="gameKeysLabel"/>
+            </WrapPanel>
+            <WrapPanel Orientation="Horizontal">
+                <Label Content="Введите кол-во ключей для добавления"/>
+                <TextBox x:Name="KeysToAdd" TextChanged="KeysToAdd_TextChanged" Width="121"/>
+            </WrapPanel>
+            <Button HorizontalAlignment="Center" Content="Добавить" x:Name="Add" Click="AddKeys_Click" Width="100" IsEnabled="False">
+                <Button.Effect>
+                    <DropShadowEffect/>
+                </Button.Effect>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>
