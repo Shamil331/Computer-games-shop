@@ -71,21 +71,29 @@ namespace Computer_games_shop
 
         private void SaveAll_Click(object sender, RoutedEventArgs e)
         {
-            string cmd;
-            cmd = "Update users set login='" + LoginBlock.Text + "', email='" + EmailBlock.Text + "', balance=" + BalanceBlock.Text + " where login='" + entereduserlogin + "'";
-            if (password!=PasswordBlock.Text)
-                cmd = "Update users set login='" + LoginBlock.Text + "', password='" + connection.GetHashString(PasswordBlock.Text) + "', email='" + EmailBlock.Text + "', balance=" + BalanceBlock.Text + " where login='" + entereduserlogin + "'";
-            connection.cmd(cmd);
-            string message= "<h1>Данные вашей учётной записи обновились.<br/>Новые данные</h1>\nЛогин: " + LoginBlock.Text + "<br/>Пароль: " + connection.GetHashString(PasswordBlock.Text) + "<br/>Почта: " + EmailBlock.Text;
-            connection.sendMessageToEmail(connection.select(userdata, "email"), message);
-            if (balance!=Convert.ToInt32(BalanceBlock.Text))
+            if(connection.cmd("Select * from users where login='"+LoginBlock.Text+"' and login!='"+entereduserlogin+"'").Rows.Count <= 0)
             {
-                message = "Операции изменения баланса от: " + dateTime.ToString("dd.MM.yyyy") + ", " + dateTime.ToString("HH:mm:ss") + "<br/><h1>Ваш баланс успешно изменён.</h1>Размер вашего счёта составляет: " + BalanceBlock.Text + "р.";
-                connection.sendMessageToEmail(connection.select(userdata, "email"), message);
+                if (connection.cmd("Select * from users where email='" + EmailBlock.Text + "' and email!='"+ connection.select(connection.cmd("Select * from users where login='" + LoginBlock.Text + "'"), "email") + "'").Rows.Count <= 0)
+                {
+                    string cmd;
+                    cmd = "Update users set login='" + LoginBlock.Text + "', email='" + EmailBlock.Text + "', balance=" + BalanceBlock.Text + " where login='" + entereduserlogin + "'";
+                    if (password != PasswordBlock.Text)
+                        cmd = "Update users set login='" + LoginBlock.Text + "', password='" + connection.GetHashString(PasswordBlock.Text) + "', email='" + EmailBlock.Text + "', balance=" + BalanceBlock.Text + " where login='" + entereduserlogin + "'";
+                    connection.cmd(cmd);
+                    string message = "<h1>Данные вашей учётной записи обновились.<br/>Новые данные</h1>\nЛогин: " + LoginBlock.Text + "<br/>Пароль: " + connection.GetHashString(PasswordBlock.Text) + "<br/>Почта: " + EmailBlock.Text;
+                    connection.sendMessageToEmail(connection.select(userdata, "email"), message);
+                    if (balance != Convert.ToInt32(BalanceBlock.Text))
+                    {
+                        message = "Операции изменения баланса от: " + dateTime.ToString("dd.MM.yyyy") + ", " + dateTime.ToString("HH:mm:ss") + "<br/><h1>Ваш баланс успешно изменён.</h1>Размер вашего счёта составляет: " + BalanceBlock.Text + "р.";
+                        connection.sendMessageToEmail(connection.select(userdata, "email"), message);
+                    }
+                    Account reopen = new Account(LoginBlock.Text, previousWindow);
+                    reopen.Show();
+                    this.Close();
+                }
+                else MessageBox.Show("Данная почта уже занята");
             }
-            Account reopen = new Account(LoginBlock.Text, previousWindow);
-            reopen.Show();
-            this.Close();
+            else MessageBox.Show("Данный логин уже занят");
         }
     }
 }

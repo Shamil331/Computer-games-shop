@@ -76,7 +76,7 @@ namespace Computer_games_shop
             m.Body = message;
             m.IsBodyHtml = true;
             SmtpClient smtp = new SmtpClient("smtp.mail.ru", 587);
-            smtp.Credentials = new NetworkCredential("shigabiev.shamil@mail.ru", "kjWr5s6ct7H62qbrWEu7");
+            smtp.Credentials = new NetworkCredential("shigabiev.shamil@mail.ru", "0ifG101waH8BusjgdjTa");
             smtp.EnableSsl = true;
             smtp.Send(m);
         }

@@ -44,7 +44,7 @@
         </Style>
     </Window.Resources>
     <ScrollViewer>
-    <Grid ShowGridLines="True" Background="#f5f0e1">
+    <Grid ShowGridLines="False" Background="#f5f0e1">
         <Grid.RowDefinitions>
             <RowDefinition Height="50*"></RowDefinition>
             <RowDefinition Height="109*"></RowDefinition>

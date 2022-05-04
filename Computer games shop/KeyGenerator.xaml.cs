@@ -32,8 +32,8 @@ namespace Computer_games_shop
             gamedeveloper = Developer_Of_Game;
             adminlogin = Login_Of_Admin;
             InitializeComponent();
-            gameNameLabel.Content = gamename;
-            gameDeveloperLabel.Content = gamedeveloper;
+            gameNameLabel.Content = gamename.Replace('_',' ');
+            gameDeveloperLabel.Content = gamedeveloper.Replace('_',' ');
             string cmd = "Select * from games where name='"+gamename+"' and developer='"+gamedeveloper+"'";
             game=connection.cmd(cmd);
             gameKeysLabel.Content = connection.select(game, "quantity");
@@ -113,13 +113,13 @@ namespace Computer_games_shop
                 {
                     cmd = "Insert into keys values (" + gameId + ",'" + key + "')";
                     connection.cmd(cmd);
+                    cmd = "Update games set quantity=quantity+1 where id="+gameId;
+                    connection.cmd(cmd);
                 }
                 catch
                 {
                     continue;
                 }
-                cmd = "Update games set quantity=quantity+1";
-                connection.cmd(cmd);
             }
             RedactGames RG = new RedactGames(adminlogin);
             RG.Show();

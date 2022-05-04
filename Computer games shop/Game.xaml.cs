@@ -27,7 +27,32 @@ namespace Computer_games_shop
 
         private void BuyButtom_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(this.Height.ToString() + ";" + this.Width.ToString());
+            int balance = Convert.ToInt32(connection.select(connection.cmd("Select * from users where login='" + userLogin + "'"), "balance"));
+            if (gameQuantity != 0)
+            {
+                if (balance >= gamePrice)
+                {
+                    connection.cmd("Update users set balance-=" + gamePrice + " where login='" + userLogin + "'");
+                    DataTable key;
+                    key = connection.cmd("Select top 1 * from keys where game_id='" + GameId + "'");
+                    string keyvalue = connection.select(key, "value");
+                    var id = connection.select(key, "id");
+                    connection.cmd("Delete keys where id=" + id);
+                    connection.cmd("Update games set quantity-=1 where id=" + GameId);
+                    string userEmail = connection.select(connection.cmd("Select * from users where login='" + userLogin + "'"), "email");
+                    QuantityLabel.Content = "Наличие: " + gameQuantity.ToString();
+                    QuantityLabel.Foreground = SetColor(gameQuantity);
+                    try { connection.sendMessageToEmail(userEmail, "<h1>Уважаемый покупатель!</h1>В интернет-магазине Computer games shop Вы приобрели товар " + gameName + "</br>Ваш ключ: <h1>" + keyvalue + "</h1>Спасибо за покупку!</br>С уважением, Computer games shop");
+                        MessageBox.Show("Проверьте вашу почту");
+                        previous_Window.Show();
+                        this.Close();
+                    }
+                    catch { MessageBox.Show(keyvalue); }
+                    connection.cmd("Insert into orders values ("+GameId+","+UserId+",'"+DateTime.Now+"')");
+                }
+                else MessageBox.Show("Недостаточно средств на счету");
+            }
+            else MessageBox.Show("Данного товара нет в наличии");
         }
 
         private void Game_Shop_MouseDown(object sender, MouseButtonEventArgs e)
@@ -93,7 +118,7 @@ namespace Computer_games_shop
             previous_Window = window;
             userLogin=userlogin;
             GameId = gameId;
-            UserId = Convert.ToInt32(connection.select(connection.cmd("Select * from users where login='" + userLogin + "'"), "id"));
+            if (userlogin!=null) UserId = Convert.ToInt32(connection.select(connection.cmd("Select * from users where login='" + userLogin + "'"), "id"));
             string cmd = "Select * from games where id=" + GameId;
             game = connection.cmd(cmd);
             gameName = connection.select(game, "name").ToString();

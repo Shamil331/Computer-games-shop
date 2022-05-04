@@ -44,8 +44,8 @@
             <Setter Property="Background" Value="#ff6e40"/>
         </Style>
         <Style x:Key="Genre" TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
-            <Setter Property="FontSize" Value="22"/>
-            <Setter Property="Foreground" Value="#1e3d59"/>
+            <Setter Property="FontSize" Value="22px"/>
+            <Setter Property="Foreground" Value="#FFA44527"/>
         </Style>
     </Window.Resources>
     <Grid ShowGridLines="False" Background="#f5f0e1" x:Name="Grid">
@@ -87,7 +87,7 @@
         </ScrollViewer>
         <ScrollViewer Grid.Row="1" Grid.Column="0" VerticalScrollBarVisibility="Hidden">
             <StackPanel Orientation="Vertical" VerticalAlignment="Top">
-                <TextBox Margin="0,10,0,0" BorderThickness="0" Grid.Column="3" Grid.Row="1" Height="25" VerticalAlignment="Top" Width="300" Text="Введите название..." TextWrapping="Wrap" MaxHeight="50" GotFocus="SearchBox_GotFocus" x:Name="SearchBox" TextChanged="SearchBox_TextChanged"/>
+                <TextBox FontSize="22px" Margin="0,10,0,0" BorderThickness="0" Grid.Column="3" Grid.Row="1" Height="30" VerticalAlignment="Top" Width="300" Text="Введите название..." TextWrapping="Wrap" MaxHeight="50" GotFocus="SearchBox_GotFocus" Foreground="#ff6e40" x:Name="SearchBox" TextChanged="SearchBox_TextChanged"/>
                 <Label Content="Экшен" Style="{StaticResource Genre}" MouseDown="Label_MouseDown" Margin="0,20,0,0"/>
                 <Label Content="Стратегия" Style="{StaticResource Genre}" MouseDown="Label_MouseDown"/>
                 <Label Content="Приключения" Style="{StaticResource Genre}" MouseDown="Label_MouseDown"/>
